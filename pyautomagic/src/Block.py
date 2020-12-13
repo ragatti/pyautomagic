@@ -7,7 +7,8 @@ import mne
 import mne_bids
 from matplotlib import pyplot as plt
 from mne_bids.read import _read_raw, read_raw_bids
-from mne_bids.utils import _parse_bids_filename, _write_json
+from mne_bids.utils import _write_json
+from mne_bids.path import get_entities_from_fname
 
 from pyautomagic.preprocessing.preprocess import Preprocess as execute_preprocess
 from pyautomagic.src.calcQuality import calcQuality
@@ -145,7 +146,7 @@ class Block:
             location of results files within BIDS folder
 
         """
-        params = _parse_bids_filename(self.unique_name, verbose=False)
+        params = get_entities_from_fname(self.unique_name, verbose=False)
         if params["ses"] is None:
             result_path = os.path.join(
                 self.root_path, "derivatives", "automagic", f"sub-{params['sub']}"
