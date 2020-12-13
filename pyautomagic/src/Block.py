@@ -146,7 +146,7 @@ class Block:
             location of results files within BIDS folder
 
         """
-        params = get_entities_from_fname(self.unique_name, verbose=False)
+        params = get_entities_from_fname(self.unique_name)
         if params["ses"] is None:
             result_path = os.path.join(
                 self.root_path, "derivatives", "automagic", f"sub-{params['sub']}"
