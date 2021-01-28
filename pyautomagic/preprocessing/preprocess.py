@@ -126,7 +126,8 @@ class Preprocess:
         montage = mne.channels.make_standard_montage(
             self.params["interpolation_params"]["montage"]
         )
-        prep = PrepPipeline(self.eeg, self.params["interpolation_params"], montage)
+        prep = PrepPipeline(self.eeg, self.params["interpolation_params"],
+                            montage, ransac=self.params['ransac'])
         prep = prep.fit()
         self.bad_chs = list(
             set(prep.still_noisy_channels)
